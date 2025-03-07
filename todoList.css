@@ -4,64 +4,152 @@
     @import ('~lucide-static/font/Lucide.css');
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-.container{
+
+body:has(#forest-zen:checked){
+    background-color: rgba(245, 222, 179, 0) !important;
+    
+}
+
+:root:has(#forest-zen:checked){
+    --green-1:#56682c;
+    --green-2: #deefb7;
+    --green-3:#9bb55f;
+    --green-4:#728740;
+    --green-border:#232b12;
+    --radio-color:var(--green-1);
+
+    --g1: #9bb55f;
+    --g2: #A9C46C;
+    --g3: #809D3C;
+    --g4: #5D8736;
+    --primary-color: #809D3C;
+    --secondary-color: #5D8736;
+
+}  
+
+:root:has(#Starry-Night:checked){
+    --green-1:#98D2C0;
+    --green-2: #205781;
+    --green-3:#98D2C0;
+    --green-4:#508C9B;
+    --green-border:#F6F8D5;
+    --radio-color:var(--green-1);
+
+    --g1: #205781;
+    --g2: #4F959D;
+    --g3: #134B70;
+    --g4: #508C9B;
+    --primary-color: #205781;
+    --secondary-color: #4F959D;
+}  
+
+:root:has(#Red:checked){
+    --green-1:#F2E8C6;
+    --green-2: #3d0000e7;
+    --green-3:#950101;
+    --green-4:#F2E8C6;
+    --green-border:#F2E8C6;
+    --radio-color:var(--green-2);
+
+    --g1: #c75146;
+    --g2: #ad2e24;
+    --g3: #81171b;
+    --g4: #540804;
+    --primary-color: #000000;
+    --secondary-color: #3D0000;
+}  
+/* Make sure this selector targets what you expect */
+
+body:has(#forest-zen:checked) .container  {
     width: 100%;
+    position: fixed;
     min-height: 100vh;
-    background: linear-gradient(180deg,#728740,#9bb55f);
+    background-image: url(./bg-forest-zen.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10px;
+    padding-top: 10%;
+}
+body:has(#Starry-Night:checked) .container  {
+    width: 100%;
+    position: fixed;
+    min-height: 100vh;
+    background-image: url(./bg-blue.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10px;
+    padding-top: 10%;
+}
+body:has(#Red:checked) .container  {
+    width: 100%;
+    position: fixed;
+    min-height: 100vh;
+    background-image: url(./floyd_by_anthonypresley_ddpjnax-pre.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 10px;
     padding-top: 10%;
 }
 .todo-app{
     width: 100%;
     max-width: 540px;
-    background: #deefb7;
+    background:var(--green-2);
+    opacity: 0.6;
     margin: 10px auto 20px;
     padding: 40px 30px 70px;
     border-radius: 10px;
 }
-.container h2{
-    color: #56682c;
+.todoheader{
+    color:#ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 0;
-    padding: 0;
+    padding-bottom: 30px;
+    text-shadow: 1.5px 1.5px #000000ba;
 
 }
 
 .xpcount{
     display:flex;
     font-size: 20px;
-    justify-content: space-between;
-    color: #56682c;
-    width: 600px;
-    gap: 50px;
+    margin-left:27%;
+    margin-bottom: 10%;
+    justify-content:space-between;
+    color: var(--green-1);
+    width: 200px;
+    gap:20px;
     text-decoration: none;
 }
 .row{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color:#deefb7;
+    background-color:var(--green-2);
     border-radius: 30px;
     padding-left: 10px;
 }
 input{
     flex: 1;
+    font-size: 20px;
     border: none;
     outline: none ;
     background: transparent;
-    background-color: #deefb7;
+    background-color: var(--green-2);
+    color:var(--green-1);
 }
 input::placeholder{
-     color: #56682c;
+     color: var(--green-1);
     font-size: 15px;
 }
 button{
     border: none;
     outline: none ;
-    padding: 15px 40px;
-    background: #9bb55f;
+    padding: 15px 50px;
+    background: var(--green-3);
     color: black;
     cursor: pointer;
     font-size: 15px;
@@ -69,8 +157,9 @@ button{
 }
 ul li{
     list-style: none;
-    color:#56682c;
-    font-size: 20px;
+    color:var(--green-1);
+    font-size: 25px;
+    font-weight:50;
     user-select: none;
     cursor: pointer;
     position: relative;
@@ -83,15 +172,17 @@ ul li::before{
     width: 20px;
     border-radius: 50px;
     background-image:url(./circle.svg);
-    color: #56682c;
+    color: var(--green-1);
     background-size: cover;
     background-position: center;
-    top: 12px;
+    top: 17px;
     left: 8px;
+    
 }
 ul li.checked{
-    color: #728740;
+    color: var(--green-4);
     text-decoration: line-through;
+
 }
 ul li.checked::before{
     background-image: url(./circle-check.svg);
@@ -102,22 +193,27 @@ ul li span{
     top: 5px;
     width: 40px;
     height: 40px;
-    font-size: 22px;
-    color: #9bb55f;
+    font-size: 29px;
+    color: var(--green-3);
     line-height: 40px;
     text-align: center;
     border-radius: 50%;
 }
 
 ul li span:hover{
-    color: #728740;
+    color: var(--green-4);
 }
+.svg-img {
+    /* Apply a color filter - this works best with simple black SVGs */
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(210deg) brightness(104%) contrast(97%);
+  }
+  
 
 .bg-modal {
     display: none; /* Ensure it's initially hidden */
     justify-content: center;
     align-items: center;
-    position: absolute; /* Change to fixed to cover the whole screen */
+    position: relative; /* Change to fixed to cover the whole screen */
     left: 0;
     top: 0;
     width: 100%;
@@ -127,17 +223,15 @@ ul li span:hover{
   
   /* Modal Content/Box */
   .modal-content {
-    background-color: #fefefe;
-    position:fixed;
+    background-color: rgba(254, 254, 254, 0.8);
+    position: fixed;
     top: 10%;
     left: 25%;
-    opacity: 0.8;
     border: 1px solid #888;
     height: 70%;
     border-radius: 4px;
-    width: 50%; /* Could be more or less, depending on screen size */
+    width: 50%;
   }
-  
   /* The Close Button */
   #close {
     color: #aaa;
@@ -154,7 +248,7 @@ ul li span:hover{
 
   #close:hover,
   #close:focus {
-    color:#56682c;
+    color:var(--green-1);
     text-decoration: none;
     cursor: pointer;
   }
@@ -165,54 +259,154 @@ ul li span:hover{
     align-items: center;
     justify-content: center;
     padding: 10%;
-    color:#56682c;
+    color:var(--green-2);
     border:black;
     font-size:30px;
     font-weight:300;
     letter-spacing: 1.5px;
-    
+    padding:1%;
+    margin-top: 5%;
+    line-height: 0.025vh;
 }
 
-.wheel-container{
-    text-align: center;
-
-}
-.wheel {
+.Wheel-container {
+    position: relative;
     width: 300px;
     height: 300px;
-    border: 16px solid #333;
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-    transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
+    margin: 60px auto 20px;
 }
 
-.segment {
-    width: 50%;
-    height: 50%;
-    background-color: #4caf50;
+/* Spin Button */
+.spinBtn {
     position: absolute;
-    right: 50%;
-    bottom: 50%;
-    border: 2px solid #fff;
-    transform-origin: 100% 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    border-radius: 50%;
     color: white;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 11;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
 }
 
-.segment:nth-child(1) { transform: rotate(0deg); }
-.segment:nth-child(2) { transform: rotate(60deg); }
-.segment:nth-child(3) { transform: rotate(120deg); }
-.segment:nth-child(4) { transform: rotate(180deg); }
-.segment:nth-child(5) { transform: rotate(240deg); }
-.segment:nth-child(6) { transform: rotate(300deg); }
+.spinBtn:hover {
+    background: var(--secondary-color);
+}
+.wheel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    transition: transform 4s ease-out;
+}
 
-#spin-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+/* Wheel segments */
+.wheel .number {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    transform-origin: bottom right;
+    transform: rotate(calc(32deg * var(--i) - 32.73deg));
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* We need to use var(--clr) from the inline style */
+}
+
+.wheel .number::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--clr);
+    transform-origin: bottom right;
+}
+
+.wheel .number span {
+    position: relative;
+    transform: rotate(calc(-1deg * var(--i) + 75deg));
+    font-size: 1em;
+    font-weight: 400;
+    color: white;
+    text-align: center;
+    display: block;
+    width: 65px;
+    margin-left: 50px;
+    margin-top: -40px;
+    z-index: 10;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+
+.toast {
+    visibility: hidden;
+    min-width: 100px;
+    min-height: 30px;
+    color: #fff;
+    text-align: center;
+    justify-content: center;
+    padding: 12px;
+    position: fixed;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    font-size: 25px;
+    transition: opacity 0.8s, bottom 0.6s ease-in-out;
+}
+
+.toast.show {
+    visibility: visible;
+    bottom: 50px;
+}
+
+.visually-hidden{
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space:nowrap;
+    width: 1px;
+}
+
+.theme-picker > fieldset{
+    border: 0;
+    width: fit-content;
+    display: flex;
+    gap: 2.5rem;
+    background-color:transparent;
+    border-radius: 0 0 1rem 1rem;
+    margin-inline: auto;
+    padding: 0.5rem 3rem;
+}
+.theme-picker{
+    background-color:var(--green-2);   
+}
+.theme-picker input[type="radio"]:checked{
+    background-color: var(--radio-color);
+}
+
+.theme-picker input[type="radio"]{
+    appearance: none;
+    background-color: transparent;
+    width: 1rem;
+    height: 1rem;
+    outline:3px solid var(--radio-color,currentColor);
+    outline-offset: 1px;
+    border-radius: 4px;
+
 }
