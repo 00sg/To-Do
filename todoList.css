@@ -1,16 +1,27 @@
+/* DOM MAINS AND BODY */
 *{
     margin: 0;
     padding: 0;
     @import ('~lucide-static/font/Lucide.css');
     font-family: Georgia, 'Times New Roman', Times, serif;
+    box-sizing: border-box;
 }
 
-body:has(#forest-zen:checked){
-    background-color: rgba(245, 222, 179, 0) !important;
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: var(--green-4)!important
+}
+body:has(#forestZen:checked){
+    background-color: var(--green-3)!important;
+    padding: 0;
+    margin: 0;
     
 }
 
-:root:has(#forest-zen:checked){
+:root:has(#forestZen:checked){
     --green-1:#56682c;
     --green-2: #deefb7;
     --green-3:#9bb55f;
@@ -27,7 +38,7 @@ body:has(#forest-zen:checked){
 
 }  
 
-:root:has(#Starry-Night:checked){
+:root:has(#makeWaves:checked){
     --green-1:#98D2C0;
     --green-2: #205781;
     --green-3:#98D2C0;
@@ -43,7 +54,7 @@ body:has(#forest-zen:checked){
     --secondary-color: #4F959D;
 }  
 
-:root:has(#Red:checked){
+:root:has(#partyVibes:checked){
     --green-1:#F2E8C6;
     --green-2: #3d0000e7;
     --green-3:#950101;
@@ -58,9 +69,11 @@ body:has(#forest-zen:checked){
     --primary-color: #000000;
     --secondary-color: #3D0000;
 }  
-/* Make sure this selector targets what you expect */
 
-body:has(#forest-zen:checked) .container  {
+
+
+/* BODY WITH THEMES INDIVIDUALLY */
+body:has(#forestZen:checked) .container  {
     width: 100%;
     position: fixed;
     min-height: 100vh;
@@ -71,7 +84,7 @@ body:has(#forest-zen:checked) .container  {
     padding: 10px;
     padding-top: 10%;
 }
-body:has(#Starry-Night:checked) .container  {
+body:has(#makeWaves:checked) .container  {
     width: 100%;
     position: fixed;
     min-height: 100vh;
@@ -82,7 +95,7 @@ body:has(#Starry-Night:checked) .container  {
     padding: 10px;
     padding-top: 10%;
 }
-body:has(#Red:checked) .container  {
+body:has(#partyVibes:checked) .container  {
     width: 100%;
     position: fixed;
     min-height: 100vh;
@@ -93,9 +106,16 @@ body:has(#Red:checked) .container  {
     padding: 10px;
     padding-top: 10%;
 }
-.todo-app{
+
+
+
+
+
+
+/* TO-DO PANEL FOR THE LIST */
+.todoApp{
     width: 100%;
-    max-width: 540px;
+    max-width: 50%;
     background:var(--green-2);
     opacity: 0.6;
     margin: 10px auto 20px;
@@ -113,17 +133,19 @@ body:has(#Red:checked) .container  {
 
 }
 
-.xpcount{
-    display:flex;
+/* XP COUNT */
+.xpCount{
+    display:inline-block;
     font-size: 20px;
-    margin-left:27%;
-    margin-bottom: 10%;
+    margin-left:1%;
+    margin-bottom: 5%;
     justify-content:space-between;
     color: var(--green-1);
     width: 200px;
-    gap:20px;
+    gap:15px;
     text-decoration: none;
 }
+/* INPUT IN TO-DO LIST */
 .row{
     display: flex;
     align-items: center;
@@ -141,10 +163,15 @@ input{
     background-color: var(--green-2);
     color:var(--green-1);
 }
+#inputBox{
+    background-color:var(--green2);
+}
 input::placeholder{
      color: var(--green-1);
     font-size: 15px;
 }
+
+/* ADD BUTTON */
 button{
     border: none;
     outline: none ;
@@ -155,6 +182,13 @@ button{
     font-size: 15px;
     border-radius: 40px;
 }
+
+
+
+
+
+
+/* CONTENTS OF TO-DO LIST */
 ul li{
     list-style: none;
     color:var(--green-1);
@@ -203,13 +237,15 @@ ul li span{
 ul li span:hover{
     color: var(--green-4);
 }
-.svg-img {
-    /* Apply a color filter - this works best with simple black SVGs */
-    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(210deg) brightness(104%) contrast(97%);
-  }
-  
 
-.bg-modal {
+
+
+
+
+
+
+/* MODAL WINDOW */
+.bgModal {
     display: none; /* Ensure it's initially hidden */
     justify-content: center;
     align-items: center;
@@ -222,7 +258,7 @@ ul li span:hover{
   }
   
   /* Modal Content/Box */
-  .modal-content {
+  .modalContent {
     background-color: rgba(254, 254, 254, 0.8);
     position: fixed;
     top: 10%;
@@ -253,13 +289,14 @@ ul li span:hover{
     cursor: pointer;
   }
 
+  /* TEXT IN MODAL */
   .text{
     display: flex;
     font-family: 'Times New Roman', Times, serif;
     align-items: center;
     justify-content: center;
     padding: 10%;
-    color:var(--green-2);
+    color:var(--secondary-color);
     border:black;
     font-size:30px;
     font-weight:300;
@@ -269,12 +306,16 @@ ul li span:hover{
     line-height: 0.025vh;
 }
 
-.Wheel-container {
+.WheelContainer {
     position: relative;
     width: 300px;
     height: 300px;
     margin: 60px auto 20px;
 }
+
+
+
+
 
 /* Spin Button */
 .spinBtn {
@@ -350,6 +391,12 @@ ul li span:hover{
 }
 
 
+
+
+
+
+/* TOAST FOR SPIN RESULTS */
+
 .toast {
     visibility: hidden;
     min-width: 100px;
@@ -373,6 +420,13 @@ ul li span:hover{
     bottom: 50px;
 }
 
+
+
+
+
+
+/* THEMES */
+/* VISUALLY HIDEEN CLASS FOR THE THEMES */
 .visually-hidden{
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -382,8 +436,7 @@ ul li span:hover{
     white-space:nowrap;
     width: 1px;
 }
-
-.theme-picker > fieldset{
+.themePicker > fieldset{
     border: 0;
     width: fit-content;
     display: flex;
@@ -393,14 +446,14 @@ ul li span:hover{
     margin-inline: auto;
     padding: 0.5rem 3rem;
 }
-.theme-picker{
+.themePicker{
     background-color:var(--green-2);   
 }
-.theme-picker input[type="radio"]:checked{
+.themePicker input[type="radio"]:checked{
     background-color: var(--radio-color);
 }
 
-.theme-picker input[type="radio"]{
+.themePicker input[type="radio"]{
     appearance: none;
     background-color: transparent;
     width: 1rem;
@@ -409,4 +462,53 @@ ul li span:hover{
     outline-offset: 1px;
     border-radius: 4px;
 
+}
+
+
+
+
+/* RESET BTN FOR LEVEL */
+#resetBtn{
+    padding:15px;
+    color: var(--green-2);
+    background-color: var(--green-4);
+    border-radius: 10px;
+    border: 1px solid var(--green-border);
+    position: absolute;
+    bottom: 5%;
+}
+
+
+
+
+/* PROGRESS BAR */
+
+.progressBar{
+    width: 200px;
+    margin-right: 41%;
+    display: inline-block;
+    height: 2em;
+    background-color: var(--green-1);
+    border: 2px solid var(--green-1);
+    border-radius: 1.5em;
+    color: var(--green-1);
+    position: relative;
+}
+.progressBar::before{
+    content: attr(data-label);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 0.2em;
+    top: 0.2em;
+    bottom: .2em;
+    right: .2em;
+    width:calc(var(--width,0)*1%);
+    min-width:1rem;
+    max-width: 96%;
+    background-color: var(--green-2);
+    border:2px solid var(--green-2);
+    border-radius: 1em;
+    transition:ease-in-out 1s;
 }

@@ -1,26 +1,18 @@
-//import JSConfetti from 'js-confetti'
+const inputBox = document.getElementById("inputBox");//INPUT BOX 
+const listContainer = document.getElementById("listContainer");//container list ul/li
+const addBtn=document.getElementById("addBtn");//button for adding tasks
+let c=false;//flag for xp
 
-const inputBox = document.getElementById("input-box");
-const listContainer = document.getElementById("list-container");
 let xp = localStorage.getItem("xp") ? parseInt(localStorage.getItem("xp")) : 0;
-        document.getElementById("xp").textContent = xp;
+        document.getElementById("xp").textContent = xp;//XP local storage fetching
 
 let level = localStorage.getItem("level") ? parseInt(localStorage.getItem("level")) : 1;
-document.getElementById("level").textContent = level;
-let c=false;
-const addBtn=document.getElementById("addBtn");
+document.getElementById("level").textContent = level;//Level local storage fetching
 
-inputBox.addEventListener('keydown', function(event) {
-    // Check if Enter was pressed
-    if (event.keyCode === 13) {
-      // Prevent the default action
-      event.preventDefault();
-      
-      // Trigger the button click
-      addBtn.click();
-    }
-  });
 
+
+
+//APPENDING TASKS TO THE LIST
 function addTask(){
     if(inputBox.value===''){
         alert("write your goals for the day")
@@ -38,18 +30,24 @@ function addTask(){
 }
 
 
-function launchConfetti() {
-    confetti({
-        particleCount: 150,
-        spread: 150,
-        scalar: 1.0,
-        startVelocity: 50,
-        shapes: ['circle'], // Can be 'square', 'circle', or 'star'
-        colors: ['#0cb2af', '#a1c65d', '#fac723', '#f29222','#e95e50','#936fac'],
-        origin: { y: 0.6 } // Confetti falls from slightly above the middle
-    });
-}
 
+
+//ENTER KEY FOR ADDING TASKS
+inputBox.addEventListener('keydown', function(event) {
+    // Check if Enter was pressed
+    if (event.keyCode === 13) {
+      // Prevent the default action
+      event.preventDefault();
+      
+      // Trigger the button click
+      addBtn.click();
+    }
+  });
+
+
+
+  
+//XP MANAGEMENT
 listContainer.addEventListener("click",function(e){
     if(e.target.tagName==="LI"){
         if(e.target.classList.toggle("checked")){
@@ -66,14 +64,24 @@ listContainer.addEventListener("click",function(e){
     }
 },false);
 
-function saveData(){
-    localStorage.setItem("data",listContainer.innerHTML);
-}
 
-function showTask(){
-    listContainer.innerHTML=localStorage.getItem("data");
-}
 
+
+
+//PROGRESS BAR USING THE XP XLIXK
+const progressBar=document.getElementsByClassName("progressBar")[0]
+setInterval(()=>{
+    const computedStyle =getComputedStyle(progressBar);
+    const width=parseFloat(xp)||0
+
+progressBar.style.setProperty('--width',width+.1)
+
+},5)
+
+
+
+
+//LEVEL UP MANAGEMENT
 function xpbonus(){
     const modaltoggle=document.getElementById("myModal");
     const close=document.getElementById("close");
@@ -81,6 +89,10 @@ function xpbonus(){
         xp = 0;  // Reset XP
         level++; // Level up
         c=true;
+        document.getElementById("level").textContent = level;
+        
+        // Save new level to localStorage
+        localStorage.setItem("level", level);
     }
     if(c==true){
     modaltoggle.style.display="block";
@@ -95,11 +107,39 @@ function xpbonus(){
     }
     close.addEventListener('click', function() {
         modaltoggle.style.display = "none";
-    });
-    
-        localStorage.setItem("level", level); // Save new level
+    });  
     }
 
+
+
+
+//RESETTING THE LEVEL ON SCREEN AND LOCAL STORAGE
+document.getElementById('resetBtn').onclick = function() {
+    level = 0; // Reset the level variable
+    document.getElementById("level").textContent = level; // Update display
+    localStorage.setItem("level", level); // Update localStorage
+};
+
+
+
+
+//CONFETTI LAUNCHER
+function launchConfetti() {
+    confetti({
+        particleCount: 150,
+        spread: 150,
+        scalar: 1.0,
+        startVelocity: 50,
+        shapes: ['circle'], // Can be 'square', 'circle', or 'star'
+        colors: ['#0cb2af', '#a1c65d', '#fac723', '#f29222','#e95e50','#936fac'],
+        origin: { y: 0.6 } // Confetti falls from slightly above the middle
+    });
+}
+
+
+
+
+    //SPIN THE WHEEL
     function spinWheel() {
         let wheel = document.querySelector('.wheel');
         let spinBtn = document.querySelector('.spinBtn');
@@ -159,6 +199,23 @@ function xpbonus(){
         };
     }
     
+
+
+
+//SAVING DATA OR TASKS IN LOCAL STORAGE
+function saveData(){
+    localStorage.setItem("data",listContainer.innerHTML);
+}
+
+
+//FETCHING AND SHOWING DATA FROM LOCAL STORAGE
+function showTask(){
+    listContainer.innerHTML=localStorage.getItem("data");
+}
+
+
+
+
     // Initialize the wheel when the page loads
     document.addEventListener('DOMContentLoaded', spinWheel);
     
